@@ -27,12 +27,19 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
   };
 
   const handleSearch = () => {
-    if (!searchBy || !searchValue) {
-      setError('Please fill in all fields to search for a book.');
+    if (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '') {
+      setError('Please enter a value to search.');
       return;
     }
     setError('');
-    onSearch(searchBy, searchValue); // Chama a função recebida por props
+    onSearch(searchBy, searchValue);
+  };
+
+  const handleReset = () => {
+    setSearchBy('');
+    setSearchValue('');
+    setError('');
+    onSearch('', '');
   };
 
   return (
@@ -40,7 +47,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
       <Box display="flex" flexDirection="column" gap={2}>
         <Box display="flex" alignItems="center" gap={2}>
           <Typography minWidth={120}>Search By:</Typography>
-          <FormControl fullWidth size="small" error={!!error && !searchBy}>
+          <FormControl fullWidth size="small" error={!!error && (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '')}>
             <InputLabel id="search-by-label">Select</InputLabel>
             <Select
               labelId="search-by-label"
@@ -71,19 +78,17 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
               setSearchValue(e.target.value);
               setError('');
             }}
-            error={!!error && !searchValue}
+            error={!!error && (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '')}
+            helperText={!!error && (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '') ? error : ''}
           />
         </Box>
 
-        {error && (
-          <Typography color="error" variant="body2" sx={{ textAlign: 'center' }}>
-            {error}
-          </Typography>
-        )}
-
-        <Box display="flex" justifyContent="center">
+        <Box display="flex" justifyContent="center" gap={2}>
           <Button variant="outlined" onClick={handleSearch}>
             Search
+          </Button>
+          <Button variant="outlined" color="secondary" onClick={handleReset}>
+            Reset
           </Button>
         </Box>
       </Box>

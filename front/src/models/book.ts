@@ -1,10 +1,10 @@
 export type Book = {
-  Title: string;
-  FirstName: string;
-  LastName: string;
-  TotalCopies: number;
-  CopiesInUse: number;
-  Type?: string;
-  Isbn?: string;
-  Category?: string;
+  title: string;
+  firstName: string;
+  lastName: string;
+  totalCopies: number;
+  copiesInUse: number;
+  type?: string;
+  isbn?: string;
+  category?: string;
 };

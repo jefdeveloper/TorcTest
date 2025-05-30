@@ -16,13 +16,9 @@ var app = builder.Build();
 
 app.MapOpenApi();
 
-app.UseSwagger()
-   .UseSwaggerUI(c =>
-   {
-       c.SwaggerEndpoint("/swagger/v1/swagger.json", "Book Store Api v1");
-   });
-
-app.MapApiEndpoints()
+app.UseSwaggerSetup()
+   .UseApiEndpoints()
+   .UseDbContext()
    .UseCors(corsPolicyName);
 
 

@@ -2,7 +2,7 @@
 {
     public static class ControllerExtensionMethods
     {
-        public static WebApplication MapApiEndpoints(this WebApplication app)
+        public static WebApplication UseApiEndpoints(this WebApplication app)
         {
             app.MapGet("/books", BookLibraryApi.GetBooks);
 

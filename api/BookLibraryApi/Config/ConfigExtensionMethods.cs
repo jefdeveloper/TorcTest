@@ -1,4 +1,6 @@
-﻿namespace BookLibraryApi.Config
+﻿using BookLibraryApi.Infra;
+
+namespace BookLibraryApi.Config
 {
     public static class ConfigExtensionMethods
     {
@@ -27,6 +29,17 @@
             }));
 
             return serviceDescriptors;
+        }
+
+        public static WebApplication UseSwaggerSetup(this WebApplication app)
+        {
+            app.UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Book Store Api v1");
+                });
+
+            return app;
         }
     }
 }

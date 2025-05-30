@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createTheme } from '@mui/material/styles';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { AppProvider } from '@toolpad/core/AppProvider';
@@ -30,10 +30,14 @@ const demoTheme = createTheme({
 
 function App() {
   const [results, setResults] = useState<PagedResponse<Book> | null>(null);
+  const [currentSearchBy, setCurrentSearchBy] = useState('');
+  const [currentSearchValue, setCurrentSearchValue] = useState('');
 
-  const handleSearch = async (searchBy: string, searchValue: string) => {
+  const handleSearch = async (searchBy: string, searchValue: string, page = 1) => {
     try {
-      const url = `http://localhost:5000/books?${encodeURIComponent(searchBy)}=${encodeURIComponent(searchValue)}`;
+      setCurrentSearchBy(searchBy);
+      setCurrentSearchValue(searchValue);
+      const url = `http://localhost:5000/books?${encodeURIComponent(searchBy)}=${encodeURIComponent(searchValue)}&page=${page}`;
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error('API request failed');
@@ -44,6 +48,10 @@ function App() {
       setResults(null);
     }
   };
+
+  useEffect(() => {
+    handleSearch('title', '', 1);
+  }, []);
 
   return (
     <AppProvider theme={demoTheme}>
@@ -57,7 +65,12 @@ function App() {
             <SearchPanel onSearch={handleSearch} />
       </Container>
       <Container sx={{ mt: 5 }}>
-             {results && <ResultGrid results={results} />}
+        <ResultGrid
+          results={results}
+          onPageChange={(page) =>
+            handleSearch(currentSearchBy, currentSearchValue, page)
+          }
+        />
       </Container>
     </AppProvider>
   );

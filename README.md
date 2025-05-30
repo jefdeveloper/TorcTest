@@ -21,6 +21,9 @@ This project is a technical test for the company Torc. It consists of a Book Lib
    - **Backend API:** [http://localhost:5000/swagger](http://localhost:5000/swagger)
    - **Frontend:** [http://localhost:3000](http://localhost:3000)
 
+> **Note:**  
+> It is not necessary to insert data into the database manually. The application automatically creates sample data when the container starts.
+
 ## Project Structure
 
 - `api`: .Net Core Web API
@@ -41,6 +44,7 @@ While the current implementation fulfills the requirements for the technical tes
 - **HTTPS Communication:** Enforce HTTPS to secure data between client and the backend.
 - **Input Validation:** Strengthen input validation to protect against common vulnerabilities.
 - **Sensitive Data Exposure:** Avoid exposing sensitive information in configuration files like `appsettings.json`.
+- **Persistent Data with Docker Volumes:** Add Docker volumes to persist database data and avoid data loss when stopping or removing containers.
 - **Minimal API Usage:**  
   > **Attention:** Minimal APIs were used in this project due to the small scope and simplicity of the requirements. While they are suitable for lightweight scenarios, they may not be ideal for applications with complex business rules or larger architectures.
 

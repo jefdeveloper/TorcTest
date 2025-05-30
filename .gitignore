@@ -46,3 +46,5 @@
 /.vs/TorcTest/FileContentIndex
 /.vs
 /api/BookLibraryAPI/.vs/BookLibraryApi/DesignTimeBuild
+/api/BookLibraryApi/bin/Debug/net9.0
+/api/BookLibraryApi/obj

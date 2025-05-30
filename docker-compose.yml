@@ -15,7 +15,7 @@ services:
   backend:
     build:
       context: ./api/BookLibraryApi
-    container_name: dotnet-api
+    container_name: book-store-back
     ports:
       - "5000:80"
     depends_on:

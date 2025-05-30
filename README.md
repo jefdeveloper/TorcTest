@@ -38,7 +38,7 @@ The system allows users to search for books. The backend is built with .Net Core
 
 While the current implementation fulfills the requirements for the technical test, there are several areas for improvement, for the backend:
 
-- **Authentication/Authorization:** Implement user authentication and authorization to protect endpoints and data.
+- **Authentication/Authorization:** Implement user authentication and authorization to protect endpoints and data. (Ex.: JWT)
 - **API Versioning:** Add versioning to the API to support future changes without breaking existing clients.
 - **Rate Limiting:** Add rate limiting to prevent abuse and ensure fair usage of the API.
 - **HTTPS Communication:** Enforce HTTPS to secure data between client and the backend.

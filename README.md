@@ -10,12 +10,14 @@ This project is a technical test for the company Torc. It consists of a Book Lib
 
 ## How to Run
 
-1. **Clone the repository** and navigate to the project root.
-2. **Start the services** using Docker Compose:
+1. **Install Docker**  
+   Download and install Docker from [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop) and ensure it is running on your machine.
+2. **Clone the repository** and navigate to the project root. (TorcTest)
+3. **Start the services** using Docker Compose command in cmd:
    ```sh
    docker-compose up --build
    ```
-3. **Access the application:**
+4. **Access the application:**
    - **Backend API:** [http://localhost:5000/swagger](http://localhost:5000/swagger)
    - **Frontend:** [http://localhost:3000](http://localhost:3000)
 
@@ -23,11 +25,11 @@ This project is a technical test for the company Torc. It consists of a Book Lib
 
 - `api`: .Net Core Web API
 - `front`: React frontend
-- `docker-compose.yml`: Orchestrates backend, frontend, and database containers
+- `docker-compose.yml`: Orchestrates backend, frontend and database containers
 
 ## Description
 
-The system allows users to search for books. The backend is built with .Net Core and exposes endpoints for book queries. The frontend, built with React, provides an interface for searching and viewing results. All components run in containers for easy setup and deployment.
+The system allows users to search for books. The backend is built with .Net Core and exposes endpoints for book queries. The frontend is built with React, provides an interface for searching and viewing results. All components run in containers for easy setup and deployment.
 
 ## Points for Improvement
 

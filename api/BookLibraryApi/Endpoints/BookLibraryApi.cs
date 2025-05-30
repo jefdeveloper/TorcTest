@@ -4,7 +4,7 @@ using BookLibraryApi.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookLibraryApi.Controller
+namespace BookLibraryApi.Endpoints
 {
     public static class BookLibraryApi
     {

@@ -1,6 +1,6 @@
-﻿namespace BookLibraryApi.Controller
+﻿namespace BookLibraryApi.Endpoints
 {
-    public static class ControllerExtensionMethods
+    public static class EndpointsExtensionMethods
     {
         public static WebApplication UseApiEndpoints(this WebApplication app)
         {

@@ -42,12 +42,26 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
     onSearch('', '');
   };
 
+  const searchOptions = [
+    { value: '', label: 'None' },
+    { value: 'title', label: 'Title' },
+    { value: 'authors', label: 'Authors' },
+    { value: 'type', label: 'Type' },
+    { value: 'isbn', label: 'ISBN' },
+    { value: 'category', label: 'Category' },
+    { value: 'copiesInUse', label: 'Copies In Use' },
+    { value: 'totalCopies', label: 'Total Copies' },
+  ];
+
+  const isInputRequired = searchBy !== '' && searchBy !== 'None';
+  const isInputEmpty = searchValue.trim() === '';
+
   return (
     <Paper elevation={1} sx={{ p: 3, maxWidth: 600, mx: 'auto', borderRadius: 2 }}>
       <Box display="flex" flexDirection="column" gap={2}>
         <Box display="flex" alignItems="center" gap={2}>
           <Typography minWidth={120}>Search By:</Typography>
-          <FormControl fullWidth size="small" error={!!error && (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '')}>
+          <FormControl fullWidth size="small" error={!!error && isInputRequired && isInputEmpty}>
             <InputLabel id="search-by-label">Select</InputLabel>
             <Select
               labelId="search-by-label"
@@ -55,14 +69,11 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
               label="Select"
               onChange={handleSearchByChange}
             >
-              <MenuItem value=""><em>None</em></MenuItem>
-              <MenuItem value="title">Title</MenuItem>
-              <MenuItem value="authors">Authors</MenuItem>
-              <MenuItem value="type">Type</MenuItem>
-              <MenuItem value="isbn">ISBN</MenuItem>
-              <MenuItem value="category">Category</MenuItem>
-              <MenuItem value="copiesInUse">Copies In Use</MenuItem>
-              <MenuItem value="totalCopies">Total Copies</MenuItem>
+              {searchOptions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Box>
@@ -78,8 +89,9 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
               setSearchValue(e.target.value);
               setError('');
             }}
-            error={!!error && (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '')}
-            helperText={!!error && (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '') ? error : ''}
+            error={!!error && isInputRequired && isInputEmpty}
+            helperText={!!error && isInputRequired && isInputEmpty ? error : ''}
+            disabled={!isInputRequired}
           />
         </Box>
 

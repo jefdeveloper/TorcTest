@@ -20,6 +20,15 @@ interface Props {
   onPageChange?: (page: number) => void;
 }
 
+const tableHeaders = [
+  'Book Title',
+  'Authors',
+  'Type',
+  'ISBN',
+  'Category',
+  'Available Copies',
+];
+
 const ResultGrid: React.FC<Props> = ({ results, onPageChange }) => {
   const books = results?.responseList ?? [];
   const pageNumber = results?.pageNumber ?? 1;
@@ -62,30 +71,29 @@ const ResultGrid: React.FC<Props> = ({ results, onPageChange }) => {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Book Title</TableCell>
-            <TableCell>Authors</TableCell>
-            <TableCell>Type</TableCell>
-            <TableCell>ISBN</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Available Copies</TableCell>
+            {tableHeaders.map((header) => (
+              <TableCell key={header} align="center">{header}</TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {books.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={7} align="center">
+              <TableCell colSpan={tableHeaders.length} align="center">
                 No results found
               </TableCell>
             </TableRow>
           ) : (
-            books.map((book, index) => (
-              <TableRow key={index}>
-                <TableCell>{book.title}</TableCell>
-                <TableCell>{`${book.firstName} ${book.lastName}`}</TableCell>
-                <TableCell>{book.type}</TableCell>
-                <TableCell>{book.isbn || '-'}</TableCell>
-                <TableCell>{book.category || '-'}</TableCell>
-                <TableCell>{`${book.copiesInUse}/${book.totalCopies}`}</TableCell>
+            books.map((book) => (
+              <TableRow key={book.isbn || book.title}>
+                <TableCell align="center">{book.title}</TableCell>
+                <TableCell align="center">
+                  `${book.firstName ?? ''} ${book.lastName ?? ''}`
+                </TableCell>
+                <TableCell align="center">{book.type}</TableCell>
+                <TableCell align="center">{book.isbn || '-'}</TableCell>
+                <TableCell align="center">{book.category || '-'}</TableCell>
+                <TableCell align="center">{`${book.copiesInUse}/${book.totalCopies}`}</TableCell>
               </TableRow>
             ))
           )}

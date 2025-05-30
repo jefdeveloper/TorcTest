@@ -6,7 +6,7 @@ namespace BookLibraryApi.Infra
     {
         public static IServiceCollection AddDbContext(this IServiceCollection  serviceDescriptors, IConfiguration configuration)
         {
-            serviceDescriptors.AddDbContext<BookLibraryContext>(options =>
+            serviceDescriptors.AddDbContextFactory<BookLibraryContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             return serviceDescriptors;

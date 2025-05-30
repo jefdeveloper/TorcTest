@@ -12,5 +12,21 @@
 
             return serviceDescriptors;
         }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection serviceDescriptors)
+        {
+            serviceDescriptors.AddEndpointsApiExplorer();
+            serviceDescriptors.AddSwaggerGen((options =>
+            {
+                options.SwaggerDoc("v1", new()
+                {
+                    Title = "Book Store API",
+                    Version = "v1",
+                    Description = "API for search books"
+                });
+            }));
+
+            return serviceDescriptors;
+        }
     }
 }

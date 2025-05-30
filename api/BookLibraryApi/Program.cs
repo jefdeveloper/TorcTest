@@ -4,34 +4,26 @@ using BookLibraryApi.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
 var corsPolicyName = "frontend";
 
-builder.Services.AddCorsPolicy(corsPolicyName);
-
-builder.Services.AddDbContext(builder.Configuration);
+builder.Services
+    .AddOpenApi()
+    .AddCorsPolicy(corsPolicyName)
+    .AddDbContext(builder.Configuration)
+    .AddSwagger();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
-app.MapApiEndpoints();
+app.UseSwagger()
+   .UseSwaggerUI(c =>
+   {
+       c.SwaggerEndpoint("/swagger/v1/swagger.json", "Book Store Api v1");
+   });
 
-app.UseCors(corsPolicyName);
+app.MapApiEndpoints()
+   .UseCors(corsPolicyName);
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();

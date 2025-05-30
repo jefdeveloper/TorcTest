@@ -9,7 +9,7 @@ namespace BookLibraryApi.Controller
     public static class BookLibraryApi
     {
         internal static async Task<IResult> GetBooks(
-            IDbContextFactory<BookLibraryContext> dbContextFactory,
+            [FromServices] IDbContextFactory<BookLibraryContext> dbContextFactory,
             [AsParameters] GetBooksRequest request,
             [FromQuery] int? page = 1,
             [FromQuery] int? pageSize = 10)

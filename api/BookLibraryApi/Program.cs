@@ -1,4 +1,5 @@
 using BookLibraryApi.Config;
+using BookLibraryApi.Controller;
 using BookLibraryApi.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.MapApiEndpoints();
 
 app.UseCors(corsPolicyName);
 

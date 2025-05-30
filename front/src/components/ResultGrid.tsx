@@ -72,7 +72,7 @@ const ResultGrid: React.FC<Props> = ({ results, onPageChange }) => {
         <TableHead>
           <TableRow>
             {tableHeaders.map((header) => (
-              <TableCell key={header} align="center">{header}</TableCell>
+              <TableCell key={header} align="center"><b>{header}</b></TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -88,7 +88,7 @@ const ResultGrid: React.FC<Props> = ({ results, onPageChange }) => {
               <TableRow key={book.isbn || book.title}>
                 <TableCell align="center">{book.title}</TableCell>
                 <TableCell align="center">
-                  `${book.firstName ?? ''} ${book.lastName ?? ''}`
+                  {`${book.firstName ?? ''} ${book.lastName ?? ''}`}
                 </TableCell>
                 <TableCell align="center">{book.type}</TableCell>
                 <TableCell align="center">{book.isbn || '-'}</TableCell>

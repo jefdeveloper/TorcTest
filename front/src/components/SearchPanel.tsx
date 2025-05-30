@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Paper,
@@ -27,10 +28,17 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
   };
 
   const handleSearch = () => {
-    if (searchBy !== '' && searchBy !== 'None' && searchValue.trim() === '') {
+
+    if (searchBy === '' || searchBy === 'None') {
+      setError('Please select a search field.');
+      return;
+    }
+
+    if (searchValue.trim() === '') {
       setError('Please enter a value to search.');
       return;
     }
+    
     setError('');
     onSearch(searchBy, searchValue);
   };
@@ -61,7 +69,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
       <Box display="flex" flexDirection="column" gap={2}>
         <Box display="flex" alignItems="center" gap={2}>
           <Typography minWidth={120}>Search By:</Typography>
-          <FormControl fullWidth size="small" error={!!error && isInputRequired && isInputEmpty}>
+          <FormControl fullWidth size="small" error={!!error && (searchBy === '' || searchBy === 'None')}>
             <InputLabel id="search-by-label">Select</InputLabel>
             <Select
               labelId="search-by-label"
@@ -75,6 +83,9 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
                 </MenuItem>
               ))}
             </Select>
+            {!!error && (searchBy === '' || searchBy === 'None') && (
+              <FormHelperText>{error}</FormHelperText>
+            )}
           </FormControl>
         </Box>
 

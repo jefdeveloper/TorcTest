@@ -57,7 +57,7 @@ function App() {
 
   // Busca inicial ao montar o componente
   useEffect(() => {
-    handleSearch('title', '', 1);
+    handleSearch('', '', 1);
   }, []);
 
   return (

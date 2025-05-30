@@ -1,5 +1,5 @@
 using BookLibraryApi.Config;
-using BookLibraryApi.Controller;
+using BookLibraryApi.Endpoints;
 using BookLibraryApi.Infra;
 
 var builder = WebApplication.CreateBuilder(args);

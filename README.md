@@ -27,7 +27,7 @@ This project is a technical test for the company Torc. It consists of a Book Lib
 
 ## Description
 
-The system allows users to search for books by various criteria. The backend is built with .NET and exposes endpoints for book queries. The frontend, built with React, provides a user-friendly interface for searching and viewing results. All components run in containers for easy setup and deployment.
+The system allows users to search for books by various criteria. The backend is built with .NET and exposes endpoints for book queries. The frontend, built with React, provides an interface for searching and viewing results. All components run in containers for easy setup and deployment.
 
 ## Points for Improvement
 

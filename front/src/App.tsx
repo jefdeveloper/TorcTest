@@ -30,13 +30,13 @@ const demoTheme = createTheme({
 const API_BASE_URL = 'http://localhost:5000';
 
 function App() {
-  // Inicializa busca por título como padrão
+  // Initialize state
   const [results, setResults] = useState<PagedResponse<Book> | null>(null);
   const [currentSearchBy, setCurrentSearchBy] = useState('title');
   const [currentSearchValue, setCurrentSearchValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Função para buscar livros
+  // Function to search for books
   const handleSearch = async (searchBy: string, searchValue: string, page = 1) => {
     try {
       setCurrentSearchBy(searchBy);
@@ -55,7 +55,7 @@ function App() {
     }
   };
 
-  // Busca inicial ao montar o componente
+  // First get
   useEffect(() => {
     handleSearch('', '', 1);
   }, []);
